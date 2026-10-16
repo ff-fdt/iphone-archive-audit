@@ -24,7 +24,7 @@ from pathlib import Path
 from typing import Any, Iterable
 
 
-VERSION = "1.1.0"
+VERSION = "1.1.1"
 READ_BYTES = 64
 HASH_CHUNK_BYTES = 8 * 1024 * 1024
 

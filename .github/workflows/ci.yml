@@ -8,8 +8,6 @@ jobs:
     strategy:
       matrix:
         python: ['3.10', '3.14']
-    env:
-      TG_CHECKIN_HOME: ${{ runner.temp }}/telegram-checkin-tests
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
