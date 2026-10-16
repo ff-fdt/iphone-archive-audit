@@ -6,17 +6,24 @@ Check photo and video files exported from an iPhone before moving an archive
 into long-term storage. A single Python script inventories the files, checks
 their headers, groups related media, and optionally computes SHA-256 hashes.
 
-## Features
+## Demo
 
-- File counts, exact byte totals, and extension summaries.
-- Zero-byte files, read errors, symbolic links, and case-insensitive path collisions.
-- Header checks for common image, video, and sidecar formats, including HEIC,
-  JPEG, MOV, AVIF, JXL, RAW, and AAE.
-- AAE sidecar pairing, filename-based Live Photo candidates, and Image Capture
-  numbered-name families such as `IMG_0001 1.HEIC`.
-- Deterministic readability samples with macOS `sips` and `ffprobe`.
-- Optional full-file SHA-256 manifest and byte-identical duplicate groups.
-- Source metadata snapshots before and after scanning to detect concurrent changes.
+Run a sample archive containing two identical one-pixel PNGs and an empty JPEG.
+
+```sh
+python3 examples/demo.py
+```
+
+```text
+status=attention
+files=3
+bytes=138
+json=demo-output/_audit/archive-audit.json
+markdown=demo-output/_audit/archive-audit.md
+sha256=demo-output/_audit/sha256-manifest.tsv
+```
+
+The report identifies the empty file and one group of identical images. [Sample report](examples/report.md) · [SHA-256 manifest](examples/sha256-manifest.tsv).
 
 ## Quick start
 
@@ -51,6 +58,18 @@ python3 audit_archive.py /path/to/Photos_Originals --skip-readability --full-sha
 This also writes `sha256-manifest.tsv`. Choose another report directory with
 `--audit-dir /path/to/reports`; reports must be outside the source archive.
 
+## Features
+
+- File counts, exact byte totals, and extension summaries.
+- Zero-byte files, read errors, symbolic links, and case-insensitive path collisions.
+- Header checks for common image, video, and sidecar formats, including HEIC,
+  JPEG, MOV, AVIF, JXL, RAW, and AAE.
+- AAE sidecar pairing, filename-based Live Photo candidates, and Image Capture
+  numbered-name families such as `IMG_0001 1.HEIC`.
+- Deterministic readability samples with macOS `sips` and `ffprobe`.
+- Optional full-file SHA-256 manifest and byte-identical duplicate groups.
+- Source metadata snapshots before and after scanning to detect concurrent changes.
+
 ## Results
 
 | Exit code | Meaning |
@@ -77,3 +96,5 @@ python3 -m unittest discover -v
 ```
 
 Tests create synthetic media headers in temporary directories.
+
+[Contributing](CONTRIBUTING.md)

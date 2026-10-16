@@ -5,6 +5,25 @@
 检查从 iPhone 导出的照片、视频和侧车文件，生成 JSON、Markdown 报告与可选的
 SHA-256 清单。适合在换机、整理移动硬盘和长期保存照片时使用。
 
+## 演示
+
+生成包含两张相同的单像素 PNG 和一个空 JPEG 的示例归档。
+
+```sh
+python3 examples/demo.py
+```
+
+```text
+status=attention
+files=3
+bytes=138
+json=demo-output/_audit/archive-audit.json
+markdown=demo-output/_audit/archive-audit.md
+sha256=demo-output/_audit/sha256-manifest.tsv
+```
+
+报告会列出空文件及一组内容相同的图片。[报告示例](examples/report.md) · [SHA-256 清单](examples/sha256-manifest.tsv)。
+
 ## 使用
 
 需要 Python 3.10 及以上，扫描器使用标准库。
@@ -35,3 +54,5 @@ python3 -m unittest discover -v
 ```
 
 采用 MIT 许可证。
+
+[参与贡献](CONTRIBUTING.md)
